@@ -1,0 +1,16 @@
+#docker run -d --rm --name Mongo -p 27017:27017 -v mongodbdata:/data/db mongo
+
+version: "3.8"
+
+services: #add the services that docker is going to compose
+    mongo: #mongo is the client
+        image: mongo #image name
+        container_name: mongo #container name
+        ports: #ports is array type. array start with '-' and a space. then the port mapping
+            - 27017:27017 #external port on left side, internal port on right side
+        volumes: #volumes is array type. specify the volume explicity and then add the directory 
+            - mongodbdata:/data/db #/data/db is stored in mongodbdata volume which is outside of the container in the host machine
+            
+volumes: #register the volumes
+    mongodbdata:
+            
