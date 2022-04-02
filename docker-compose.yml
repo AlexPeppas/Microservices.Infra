@@ -10,7 +10,17 @@ services: #add the services that docker is going to compose
             - 27017:27017 #external port on left side, internal port on right side
         volumes: #volumes is array type. specify the volume explicity and then add the directory 
             - mongodbdata:/data/db #/data/db is stored in mongodbdata volume which is outside of the container in the host machine
+    
+    rabbitmq: 
+        image: rabbitmq:management
+        container_name: rabbitmq
+        ports:
+            - 5672:5672 #maps for publish/consume
+            - 15672:15672 #RabbitMq portal on localhost to navigate
+        volumes:
+            - rabbitmqdata:/data/queue #/var/lib/rabbitmq
             
 volumes: #register the volumes
     mongodbdata:
+    rabbitmqdata:
             
